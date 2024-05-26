@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:sistem_pembelajaran/screens/absensi_screen.dart';
-import 'package:sistem_pembelajaran/screens/course_screen.dart';
 import 'package:sistem_pembelajaran/screens/class_screen.dart';
+import 'package:sistem_pembelajaran/screens/course_screen.dart';
 
 class HomePage extends StatelessWidget {
   //membuat data static
-  List catNames = ["Nilai", "Materi", "Absensi", "Book", "Quiz", "Remedial"];
+  List<String> catNames = [
+    "Nilai",
+    "Materi",
+    "Absensi",
+    "Book",
+    "Quiz",
+    "Remedial"
+  ];
   List<Color> catColors = [
     Color(0xFFFFCF2F),
     Color(0xFF6fe080),
@@ -22,13 +29,7 @@ class HomePage extends StatelessWidget {
     Icon(Icons.play_circle_fill, color: Colors.white, size: 30),
     Icon(Icons.emoji_events, color: Colors.white, size: 30),
   ];
-  List imgList = [
-    'BAB I',
-    'BAB II'
-        'BAB IV',
-    'BAB V',
-    'BAB VI'
-  ];
+  List<String> imgList = ['BAB I', 'BAB II', 'BAB IV', 'BAB V', 'BAB VI'];
 
   @override
   Widget build(BuildContext context) {
@@ -121,9 +122,7 @@ class HomePage extends StatelessWidget {
                               builder: (context) => MaterialScreen(),
                             ),
                           );
-                        } else
-                          (catNames[index] == "Absensi");
-                        {
+                        } else if (catNames[index] == "Absensi") {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
@@ -159,6 +158,7 @@ class HomePage extends StatelessWidget {
                     );
                   },
                 ),
+                SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -250,7 +250,7 @@ class HomePage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.assignment), label: 'Courses'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Whislist'),
+              icon: Icon(Icons.favorite), label: 'Wishlist'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
         ],
       ),

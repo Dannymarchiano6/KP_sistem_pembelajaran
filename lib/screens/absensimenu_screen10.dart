@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(AbsensiApp());
 }
 
-class MyApp extends StatelessWidget {
+class AbsensiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Absensi',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: AbsensiScreen10(),
     );
   }
@@ -23,152 +19,117 @@ class AbsensiScreen10 extends StatefulWidget {
 }
 
 class _AbsensiScreenState extends State<AbsensiScreen10> {
-  String? selectedNIS;
-  String? selectedName;
-  String? selectedClass;
-  String? selectedAttendanceStatus;
-
-  final List<String> nisList = ['12345', '67890', '11223'];
-  final List<String> nameList = ['John Doe', 'Jane Smith', 'Robert Brown'];
-  final List<String> classList = ['Class 10', 'Class 11', 'Class 12'];
+  final TextEditingController nisController = TextEditingController();
+  final TextEditingController namaController = TextEditingController();
+  final TextEditingController kelasController = TextEditingController();
+  String? selectedStatus;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Absensi'),
+        title: Text('Absensi menu'),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            // Handle back button press
+          },
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DropdownButtonFormField<String>(
-              value: selectedNIS,
-              hint: Text('NIS'),
-              items: nisList.map((nis) {
-                return DropdownMenuItem(
-                  value: nis,
-                  child: Text(nis),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedNIS = value;
-                });
-              },
+            Text(
+              'Silahkan Absensi terlebih dahulu',
+              style: TextStyle(fontSize: 16),
             ),
             SizedBox(height: 16),
-            DropdownButtonFormField<String>(
-              value: selectedName,
-              hint: Text('Nama'),
-              items: nameList.map((name) {
-                return DropdownMenuItem(
-                  value: name,
-                  child: Text(name),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedName = value;
-                });
-              },
+            TextField(
+              controller: nisController,
+              decoration: InputDecoration(
+                labelText: 'NIS',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
             ),
             SizedBox(height: 16),
-            DropdownButtonFormField<String>(
-              value: selectedClass,
-              hint: Text('Kelas'),
-              items: classList.map((kelas) {
-                return DropdownMenuItem(
-                  value: kelas,
-                  child: Text(kelas),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedClass = value;
-                });
-              },
+            TextField(
+              controller: namaController,
+              decoration: InputDecoration(
+                labelText: 'Nama',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
             ),
-            SizedBox(height: 32),
-            Column(
-              children: [
-                RadioListTile<String>(
-                  title: Text('Hadir'),
+            SizedBox(height: 16),
+            SizedBox(height: 16),
+            DropdownButtonFormField<String>(
+              decoration: InputDecoration(
+                labelText: 'Status Kehadiran',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              value: selectedStatus,
+              items: [
+                DropdownMenuItem(
                   value: 'Hadir',
-                  groupValue: selectedAttendanceStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedAttendanceStatus = value;
-                    });
-                  },
+                  child: Text('Hadir'),
                 ),
-                RadioListTile<String>(
-                  title: Text('Tidak Hadir'),
+                DropdownMenuItem(
                   value: 'Tidak Hadir',
-                  groupValue: selectedAttendanceStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedAttendanceStatus = value;
-                    });
-                  },
+                  child: Text('Tidak Hadir'),
                 ),
-                RadioListTile<String>(
-                  title: Text('Izin'),
+                DropdownMenuItem(
                   value: 'Izin',
-                  groupValue: selectedAttendanceStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedAttendanceStatus = value;
-                    });
-                  },
+                  child: Text('Izin'),
                 ),
-                RadioListTile<String>(
-                  title: Text('Sakit'),
+                DropdownMenuItem(
                   value: 'Sakit',
-                  groupValue: selectedAttendanceStatus,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedAttendanceStatus = value;
-                    });
-                  },
+                  child: Text('Sakit'),
                 ),
               ],
-            ),
-            SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () {
-                // Handle save logic here
-                print('NIS: $selectedNIS');
-                print('Nama: $selectedName');
-                print('Kelas: $selectedClass');
-                print('Status: $selectedAttendanceStatus');
+              onChanged: (value) {
+                setState(() {
+                  selectedStatus = value;
+                });
               },
-              child: Text('Simpan'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.purple,
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
-                textStyle: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 16),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle save button press
+                  // You can access the values using the controllers and selectedStatus variable
+                  String nis = nisController.text;
+                  String nama = namaController.text;
+                  String kelas = kelasController.text;
+                  String? status = selectedStatus;
+
+                  // Add your save logic here
+                },
+                child: Text('Simpan'),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  backgroundColor: Color.fromARGB(255, 244, 246, 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
               ),
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: Colors.purple,
       ),
     );
   }
