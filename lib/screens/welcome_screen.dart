@@ -7,10 +7,12 @@ class WelcomeScreen extends StatelessWidget {
     return Material(
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context)
+            .size
+            .height, // Updated to match the screen height
         child: Stack(
           children: [
-            Stack(
+            Column(
               children: [
                 Container(
                   width: MediaQuery.of(context).size.width,
@@ -18,31 +20,27 @@ class WelcomeScreen extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Colors.white,
                   ),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height / 1.6,
-                  decoration: BoxDecoration(
-                    color: Color(0xFF674AEF),
-                    borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(70)),
-                  ),
-                  child: Center(
-                    child: Image.asset(
-                      "Images/books.png",
-                      scale: 0.8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xFF674AEF),
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(70)),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        "Images/splash.png",
+                        scale: 0.8,
+                      ),
                     ),
                   ),
                 ),
+                Expanded(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(color: Color(0xFF674AEF)),
+                  ),
+                ),
               ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height / 2.666,
-                decoration: BoxDecoration(color: Color(0xFF674AEF)),
-              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -57,6 +55,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min, // Updated to fit the content
                   children: [
                     Text(
                       "Learning is Everything",
@@ -79,9 +78,7 @@ class WelcomeScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 60,
-                    ),
+                    SizedBox(height: 30), // Reduced height to avoid overflow
                     Material(
                       color: Color(0xFF674AEF),
                       borderRadius: BorderRadius.circular(10),

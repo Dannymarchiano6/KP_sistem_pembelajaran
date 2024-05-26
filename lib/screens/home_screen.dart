@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:sistem_pembelajaran/screens/absensi_screen.dart';
+import 'package:sistem_pembelajaran/screens/course_screen.dart';
+import 'package:sistem_pembelajaran/screens/class_screen.dart';
 
 class HomePage extends StatelessWidget {
   //membuat data static
-  List catNames = ["Nilai", "Kelas", "Absensi", "Book", "Quiz", "Remedial"];
+  List catNames = ["Nilai", "Materi", "Absensi", "Book", "Quiz", "Remedial"];
   List<Color> catColors = [
     Color(0xFFFFCF2F),
     Color(0xFF6fe080),
@@ -20,11 +23,11 @@ class HomePage extends StatelessWidget {
     Icon(Icons.emoji_events, color: Colors.white, size: 30),
   ];
   List imgList = [
-    'Algoritma Basic',
-    'Computer Network'
-        'Microsoft Office',
-    'Introduction',
-    'Struktur Data'
+    'BAB I',
+    'BAB II'
+        'BAB IV',
+    'BAB V',
+    'BAB VI'
   ];
 
   @override
@@ -109,29 +112,50 @@ class HomePage extends StatelessWidget {
                     childAspectRatio: 1.1,
                   ),
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: catColors[index],
-                            shape: BoxShape.circle,
+                    return InkWell(
+                      onTap: () {
+                        if (catNames[index] == "Materi") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MaterialScreen(),
+                            ),
+                          );
+                        } else
+                          (catNames[index] == "Absensi");
+                        {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => AbsensiScreen(),
+                            ),
+                          );
+                        }
+                      },
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 60,
+                            width: 60,
+                            decoration: BoxDecoration(
+                              color: catColors[index],
+                              shape: BoxShape.circle,
+                            ),
+                            child: Center(
+                              child: catIcons[index],
+                            ),
                           ),
-                          child: Center(
-                            child: catIcons[index],
+                          SizedBox(height: 10),
+                          Text(
+                            catNames[index],
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.black.withOpacity(0.7),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          catNames[index],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -170,7 +194,14 @@ class HomePage extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) {
                     return InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  CourseScreen(imgList[index]),
+                            ));
+                      },
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 20, horizontal: 10),
@@ -183,7 +214,7 @@ class HomePage extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.all(10),
                               child: Image.asset(
-                                "images/${imgList[index]}.png",
+                                "assets/images${imgList[index]}.png",
                                 width: 100,
                                 height: 100,
                               ),

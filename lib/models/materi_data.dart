@@ -43,5 +43,20 @@ final List<Materi> hotels = [
       publish: '18/4/2024',
       kelas: '11' // Replace with unique image paths
       ),
+  Materi(
+      title: 'BAB 4',
+      description: 'Deskripsi Materi Bab 4',
+      imagePath: 'assets/images/hotelD.jpg',
+      publish: '18/4/2024',
+      kelas: '11' // Replace with unique image paths
+      ),
+  Materi(
+      title: 'BAB 4',
+      description: 'Deskripsi Materi Bab 4',
+      imagePath: 'assets/images/hotelD.jpg',
+      publish: '18/4/2024',
+      kelas: '11' // Replace with unique image paths
+      ),
+
   // Tambahkan hotel lainnya sesuai kebutuhan
 ];

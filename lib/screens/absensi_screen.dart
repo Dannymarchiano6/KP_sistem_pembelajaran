@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/materi_kelas10.dart';
+import 'package:sistem_pembelajaran/screens/absensimenu_screen10.dart';
 import 'package:sistem_pembelajaran/screens/materi_kelas11.dart';
 import 'package:sistem_pembelajaran/screens/materi_kelas12.dart';
 
@@ -11,21 +11,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kelas',
+      title: 'Absensi',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MaterialScreen(),
+      home: AbsensiScreen(),
     );
   }
 }
 
-class MaterialScreen extends StatelessWidget {
+class AbsensiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kelas'),
+        title: Text('Absensi'),
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
@@ -35,7 +35,7 @@ class MaterialScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Materikelas10(),
+                  builder: (context) => AbsensiScreen10(),
                 ),
               );
             },
