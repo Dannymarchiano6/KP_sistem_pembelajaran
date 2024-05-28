@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/materi_kelas11.dart';
-import 'package:sistem_pembelajaran/screens/materi_kelas12.dart';
-import 'package:sistem_pembelajaran/screens/materi_kelas10.dart';
+import 'package:sistem_pembelajaran/screens/remedial_screen10.dart';
+import 'package:sistem_pembelajaran/screens/remedial_screen11.dart';
+import 'package:sistem_pembelajaran/screens/remedial_screen12.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,21 +11,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Kelas',
+      title: 'Remedial',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MaterialScreen(),
+      home: RemedialScreen(),
     );
   }
 }
 
-class MaterialScreen extends StatelessWidget {
+class RemedialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kelas'),
+        title: Text('Remedial'),
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
@@ -35,7 +35,7 @@ class MaterialScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Materikelas10(),
+                  builder: (context) => RemedialScreen10(),
                 ),
               );
             },
@@ -51,7 +51,7 @@ class MaterialScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Materikelas11(),
+                  builder: (context) => RemedialScreen11(),
                 ),
               );
             },
@@ -67,7 +67,7 @@ class MaterialScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Materikelas12(),
+                  builder: (context) => RemedialScreen12(),
                 ),
               );
             },

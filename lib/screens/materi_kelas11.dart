@@ -35,22 +35,22 @@ class Materikelas11 extends StatelessWidget {
           ClassroomCard(
             title: 'Bab II',
             subtitle: 'Strategi Algoritmik',
-            backgroundColor: Colors.purple,
+            backgroundColor: Colors.grey,
           ),
           ClassroomCard(
             title: 'Bab III',
             subtitle: 'Berpikir Kritis dan Dampak Sosial dan Informatika',
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.grey,
           ),
           ClassroomCard(
             title: 'Bab IV',
             subtitle: 'Jaringan Komputer',
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.grey,
           ),
           ClassroomCard(
             title: 'Bab V',
             subtitle: 'Pengembangan Aplikasi library Kecerdasan Artifisial',
-            backgroundColor: Colors.teal,
+            backgroundColor: Colors.grey,
           ),
         ],
       ),

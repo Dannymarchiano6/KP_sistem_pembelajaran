@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sistem_pembelajaran/screens/absensimenu_screen10.dart';
+import 'package:sistem_pembelajaran/screens/absensimenu_screen11.dart';
+import 'package:sistem_pembelajaran/screens/absensimenu_screen12.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,7 +51,7 @@ class AbsensiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AbsensiScreen10(),
+                  builder: (context) => AbsensiScreen11(),
                 ),
               );
             },
@@ -65,7 +67,7 @@ class AbsensiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => AbsensiScreen10(),
+                  builder: (context) => AbsensiScreen12(),
                 ),
               );
             },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sistem_pembelajaran/screens/absensi_screen.dart';
 import 'package:sistem_pembelajaran/screens/class_screen.dart';
 import 'package:sistem_pembelajaran/screens/course_screen.dart';
+import 'package:sistem_pembelajaran/screens/remedial_screen.dart';
 
 class HomePage extends StatelessWidget {
   //membuat data static
@@ -9,9 +10,9 @@ class HomePage extends StatelessWidget {
     "Nilai",
     "Materi",
     "Absensi",
-    "Book",
-    "Quiz",
-    "Remedial"
+    "Kelas",
+    "Remedial",
+    "Info",
   ];
   List<Color> catColors = [
     Color(0xFFFFCF2F),
@@ -25,8 +26,8 @@ class HomePage extends StatelessWidget {
     Icon(Icons.category, color: Colors.white, size: 30),
     Icon(Icons.video_library, color: Colors.white, size: 30),
     Icon(Icons.assignment, color: Colors.white, size: 30),
-    Icon(Icons.store, color: Colors.white, size: 30),
-    Icon(Icons.play_circle_fill, color: Colors.white, size: 30),
+    Icon(Icons.room, color: Colors.white, size: 30),
+    Icon(Icons.book_sharp, color: Colors.white, size: 30),
     Icon(Icons.emoji_events, color: Colors.white, size: 30),
   ];
   List<String> imgList = ['BAB I', 'BAB II', 'BAB IV', 'BAB V', 'BAB VI'];
@@ -88,7 +89,7 @@ class HomePage extends StatelessWidget {
                   child: TextFormField(
                     decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Search here",
+                        hintText: "Cari",
                         hintStyle:
                             TextStyle(color: Colors.black.withOpacity(0.5)),
                         prefixIcon: Icon(
@@ -129,6 +130,13 @@ class HomePage extends StatelessWidget {
                               builder: (context) => AbsensiScreen(),
                             ),
                           );
+                        } else if (catNames[index] == "Remedial") {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RemedialScreen(),
+                            ),
+                          );
                         }
                       },
                       child: Column(
@@ -163,14 +171,14 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Courses",
+                      "Materi",
                       style: TextStyle(
                         fontSize: 23,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     Text(
-                      "See All ",
+                      "Lihat Semua ",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
@@ -246,9 +254,8 @@ class HomePage extends StatelessWidget {
         selectedFontSize: 18,
         unselectedItemColor: Colors.grey,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.assignment), label: 'Courses'),
+              icon: Icon(Icons.home), label: 'Halaman Utama'),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: 'Wishlist'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Account'),
