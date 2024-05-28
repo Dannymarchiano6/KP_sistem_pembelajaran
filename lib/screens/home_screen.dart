@@ -116,28 +116,46 @@ class HomePage extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        if (catNames[index] == "Materi") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MaterialScreen(),
-                            ),
-                          );
-                        } else if (catNames[index] == "Absensi") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => AbsensiScreen(),
-                            ),
-                          );
-                        } else if (catNames[index] == "Remedial") {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => RemedialScreen(),
-                            ),
-                          );
+                        Widget nextScreen;
+                        switch (catNames[index]) {
+                          case 'Materi':
+                            nextScreen = MaterialScreen();
+                            break;
+                          case 'Absensi':
+                            nextScreen = AbsensiScreen();
+                            break;
+                          case 'Remedial':
+                            nextScreen = RemedialScreen();
+                            break;
+                          case 'Nilai':
+                            nextScreen =
+                                RemedialScreen(); // Assuming this should be NilaiScreen
+                            break;
+                          default:
+                            return;
                         }
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    nextScreen,
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin = Offset(1.0, 0.0);
+                              const end = Offset.zero;
+                              const curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
                       },
                       child: Column(
                         children: [
@@ -204,11 +222,27 @@ class HomePage extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  CourseScreen(imgList[index]),
-                            ));
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) =>
+                                    CourseScreen(imgList[index]),
+                            transitionsBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              const begin = Offset(1.0, 0.0);
+                              const end = Offset.zero;
+                              const curve = Curves.ease;
+
+                              var tween = Tween(begin: begin, end: end)
+                                  .chain(CurveTween(curve: curve));
+
+                              return SlideTransition(
+                                position: animation.drive(tween),
+                                child: child,
+                              );
+                            },
+                          ),
+                        );
                       },
                       child: Container(
                         padding:

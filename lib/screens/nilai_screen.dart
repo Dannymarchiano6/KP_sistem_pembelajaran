@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AbsensiScreen(),
+      home: NilaiScreen(),
     );
   }
 }
 
-class AbsensiScreen extends StatelessWidget {
+class NilaiScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
