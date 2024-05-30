@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/nilai_screen10.dart';
-import 'package:sistem_pembelajaran/screens/nilai_screen11.dart';
-import 'package:sistem_pembelajaran/screens/nilai_screen12.dart';
+import 'package:sistem_pembelajaran/screens/kelas_screen10.dart';
+import 'package:sistem_pembelajaran/screens/materi_kelas11.dart';
+import 'package:sistem_pembelajaran/screens/materi_kelas12.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,21 +11,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Nilai',
+      title: 'Kelas',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NilaiScreen(),
+      home: CheckKelas(),
     );
   }
 }
 
-class NilaiScreen extends StatelessWidget {
+class CheckKelas extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nilai'),
+        title: Text('Kelas'),
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
@@ -35,15 +35,15 @@ class NilaiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CheckNilaiScreen(),
+                  builder: (context) => StudentListScreen10(),
                 ),
               );
             },
             child: ClassroomCard(
               title: 'KELAS - X',
               subtitle:
-                  'Teknologi Informasi dan Informatika\n Taufik Rahman S.T',
-              backgroundColor: Colors.purple,
+                  'Teknologi Informasi dan Informatika\nTaufik Rahman S.T',
+              backgroundColor: Colors.grey,
             ),
           ),
           InkWell(
@@ -51,15 +51,15 @@ class NilaiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CheckNilaiScreen11(),
+                  builder: (context) => Materikelas11(),
                 ),
               );
             },
             child: ClassroomCard(
               title: 'KELAS - XI',
               subtitle:
-                  'Teknologi Informasi dan Informatika\n Taufik Rahman S.T',
-              backgroundColor: Colors.purple,
+                  'Teknologi Informasi dan Informatika\nTaufik Rahman S.T',
+              backgroundColor: Colors.grey,
             ),
           ),
           InkWell(
@@ -67,15 +67,15 @@ class NilaiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CheckNilaiScreen12(),
+                  builder: (context) => Materikelas12(),
                 ),
               );
             },
             child: ClassroomCard(
               title: 'KELAS - XII',
               subtitle:
-                  'Teknologi Informasi dan Informatika\n Taufik Rahman S.T',
-              backgroundColor: Colors.purple,
+                  'Teknologi Informasi dan Informatika\nTaufik Rahman S.T',
+              backgroundColor: Colors.grey,
             ),
           ),
         ],

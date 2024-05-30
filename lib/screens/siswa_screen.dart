@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/nilai_screen10.dart';
 import 'package:sistem_pembelajaran/screens/nilai_screen11.dart';
 import 'package:sistem_pembelajaran/screens/nilai_screen12.dart';
+import 'package:sistem_pembelajaran/screens/siswa_screen10.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: NilaiScreen(),
+      home: SiswaScreen(),
     );
   }
 }
 
-class NilaiScreen extends StatelessWidget {
+class SiswaScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class NilaiScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CheckNilaiScreen(),
+                  builder: (context) => Siswa10Screen(),
                 ),
               );
             },

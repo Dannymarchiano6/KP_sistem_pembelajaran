@@ -32,7 +32,7 @@ class _AbsensiScreenState extends State<AbsensiScreen10> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            // Handle back button press
+            Navigator.pop(context);
           },
         ),
       ),
@@ -70,6 +70,17 @@ class _AbsensiScreenState extends State<AbsensiScreen10> {
               ),
             ),
             SizedBox(height: 16),
+            TextField(
+              controller: kelasController,
+              decoration: InputDecoration(
+                labelText: 'Kelas',
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+            ),
             SizedBox(height: 16),
             DropdownButtonFormField<String>(
               decoration: InputDecoration(

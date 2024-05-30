@@ -12,30 +12,30 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CheckNilaiScreen12(),
+      home: Siswa10Screen(),
     );
   }
 }
 
-class CheckNilaiScreen12 extends StatefulWidget {
+class Siswa10Screen extends StatefulWidget {
   @override
   _CheckNilaiScreenState createState() => _CheckNilaiScreenState();
 }
 
-class _CheckNilaiScreenState extends State<CheckNilaiScreen12> {
+class _CheckNilaiScreenState extends State<Siswa10Screen> {
   List<Map<String, dynamic>> nilaiSiswa = [
-    {'nama': 'Siswa F', 'nilai': 80},
-    {'nama': 'Siswa G', 'nilai': 75},
-    {'nama': 'Siswa H', 'nilai': 90},
-    {'nama': 'Siswa I', 'nilai': 85},
-    {'nama': 'Siswa J', 'nilai': 95},
+    {'nama': 'Adrian', 'status': 'Sakit'},
+    {'nama': 'Danny', 'status': 'Masuk'},
+    {'nama': 'Adrian', 'status': 'Tidak Masuk'},
+    {'nama': 'Danny', 'status': 'Izin Sakit'},
+    {'nama': 'Adrian', 'status': 'idak Masuk'},
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Check Nilai Siswa'),
+        title: Text('Check Status Siswa'),
       ),
       body: ListView.builder(
         itemCount: nilaiSiswa.length,
@@ -43,14 +43,14 @@ class _CheckNilaiScreenState extends State<CheckNilaiScreen12> {
           final siswa = nilaiSiswa[index];
           return ListTile(
             title: Text(siswa['nama']),
-            subtitle: Text('Nilai: ${siswa['nilai']}'),
+            subtitle: Text('Status: ${siswa['status']}'),
             trailing: Icon(Icons.arrow_forward),
             onTap: () {
               // Navigasi ke layar detail nilai
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailNilaiScreen(siswa: siswa),
+                  builder: (context) => DetailSiswaScreen(siswa: siswa),
                 ),
               );
             },
@@ -61,10 +61,10 @@ class _CheckNilaiScreenState extends State<CheckNilaiScreen12> {
   }
 }
 
-class DetailNilaiScreen extends StatelessWidget {
+class DetailSiswaScreen extends StatelessWidget {
   final Map<String, dynamic> siswa;
 
-  DetailNilaiScreen({required this.siswa});
+  DetailSiswaScreen({required this.siswa});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class DetailNilaiScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Nilai: ${siswa['nilai']}',
+              'Status: ${siswa['status']}',
               style: TextStyle(fontSize: 20),
             ),
           ],

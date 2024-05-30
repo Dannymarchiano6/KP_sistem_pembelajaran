@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sistem_pembelajaran/screens/materi_bab1_KelasX.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,10 +28,20 @@ class Materikelas10 extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(8),
         children: [
-          ClassroomCard(
-            title: 'Bab 1',
-            subtitle: 'Informatika dan ketrampilan Genetika',
-            backgroundColor: Colors.grey,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CourseScreenbab1('BAB 1'),
+                ),
+              );
+            },
+            child: ClassroomCard(
+              title: 'Bab 1',
+              subtitle: 'Informatika dan ketrampilan Genetika',
+              backgroundColor: Colors.grey,
+            ),
           ),
           ClassroomCard(
             title: 'Bab II',

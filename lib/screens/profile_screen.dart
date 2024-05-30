@@ -1,124 +1,138 @@
-// import 'package:flutter/material.dart';
-// // import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
-// class ProfileScreen extends StatefulWidget {
-//   @override
-//   _ProfileScreenState createState() => _ProfileScreenState();
-// }
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
 
-// class _ProfileScreenState extends State<ProfileScreen> {
-//   final TextEditingController nisController = TextEditingController();
-//   final TextEditingController usernameController = TextEditingController();
-//   final TextEditingController emailController = TextEditingController();
-//   final TextEditingController kelasController = TextEditingController();
-//   final TextEditingController alamatController = TextEditingController();
-//   final TextEditingController tanggalLahirController = TextEditingController();
+class _ProfileScreenState extends State<ProfileScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _nisController = TextEditingController();
+  final _usernameController = TextEditingController();
+  final _kelasController = TextEditingController();
+  final _alamatController = TextEditingController();
+  final _tanggalLahirController = TextEditingController();
 
-//   void saveProfile() async {
-//     String nis = nisController.text;
-//     String username = usernameController.text;
-//     String email = emailController.text;
-//     String kelas = kelasController.text;
-//     String alamat = alamatController.text;
-//     String tanggalLahir = tanggalLahirController.text;
+  @override
+  void dispose() {
+    _nisController.dispose();
+    _usernameController.dispose();
+    _kelasController.dispose();
+    _alamatController.dispose();
+    _tanggalLahirController.dispose();
+    super.dispose();
+  }
 
-//     // Add data to Firestore
-//     // await FirebaseFirestore.instance.collection('profiles').add({
-//     //   'nis': nis,
-//     //   'username': username,
-//     //   'email': email,
-//     //   'kelas': kelas,
-//     //   'alamat': alamat,
-//     //   'tanggalLahir': tanggalLahir,
-//     // });
-
-//     // Show a success message
-//     ScaffoldMessenger.of(context).showSnackBar(
-//       SnackBar(content: Text('Profile saved successfully!')),
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Profil'),
-//         leading: IconButton(
-//           icon: Icon(Icons.arrow_back),
-//           onPressed: () {
-//             // Handle back button press
-//           },
-//         ),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             TextField(
-//               controller: nisController,
-//               decoration: InputDecoration(
-//                 labelText: 'NIS',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextField(
-//               controller: usernameController,
-//               decoration: InputDecoration(
-//                 labelText: 'Username',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextField(
-//               controller: emailController,
-//               decoration: InputDecoration(
-//                 labelText: 'Email',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextField(
-//               controller: kelasController,
-//               decoration: InputDecoration(
-//                 labelText: 'Kelas',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextField(
-//               controller: alamatController,
-//               decoration: InputDecoration(
-//                 labelText: 'Alamat',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextField(
-//               controller: tanggalLahirController,
-//               decoration: InputDecoration(
-//                 labelText: 'Tanggal Lahir',
-//                 border: OutlineInputBorder(),
-//               ),
-//             ),
-//             SizedBox(height: 20),
-//             ElevatedButton(
-//               onPressed: saveProfile,
-//               child: Text('Simpan'),
-//               style: ElevatedButton.styleFrom(
-//                 backgroundColor: Colors.purple, // Background color
-//               ),
-//             ),
-//             SizedBox(height: 10),
-//             TextButton(
-//               onPressed: () {
-//                 // Handle change profile button press
-//               },
-//               child: Text('Ubah Profil'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: ListView(
+            children: <Widget>[
+              TextFormField(
+                controller: _nisController,
+                decoration: InputDecoration(
+                  labelText: 'NIS',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter NIS';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter username';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _kelasController,
+                decoration: InputDecoration(
+                  labelText: 'Kelas',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter kelas';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _alamatController,
+                decoration: InputDecoration(
+                  labelText: 'Alamat',
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter alamat';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextFormField(
+                controller: _tanggalLahirController,
+                decoration: InputDecoration(
+                  labelText: 'Tanggal Lahir',
+                  border: OutlineInputBorder(),
+                ),
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(1900),
+                    lastDate: DateTime(2100),
+                  );
+                  if (pickedDate != null) {
+                    setState(() {
+                      _tanggalLahirController.text =
+                          "${pickedDate.toLocal()}".split(' ')[0];
+                    });
+                  }
+                },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter tanggal lahir';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 32.0),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Process data
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Processing Data')));
+                  }
+                },
+                child: Text('Submit'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

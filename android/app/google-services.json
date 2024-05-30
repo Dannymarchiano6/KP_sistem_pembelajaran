@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "664618349651",
-    "project_id": "pembelajarantik-ddbe2",
-    "storage_bucket": "pembelajarantik-ddbe2.appspot.com"
+    "project_number": "650069014251",
+    "project_id": "pembelajaransma1mandetik",
+    "storage_bucket": "pembelajaransma1mandetik.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:664618349651:android:625c8cb9039a9077cc02a6",
+        "mobilesdk_app_id": "1:650069014251:android:8cbb486734ecb286bfb0ae",
         "android_client_info": {
           "package_name": "com.example.sistem_pembelajaran"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAmdP1iqjD61nw5XK4wRr7VEH9lXAcpTUY"
+          "current_key": "AIzaSyBlYuM3e5OHE69nhov81YMqUHPweW_S9Ww"
         }
       ],
       "services": {
