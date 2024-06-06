@@ -4,14 +4,17 @@ import 'package:sistem_pembelajaran/widgets/description_section.dart';
 import 'package:sistem_pembelajaran/widgets/video_section.dart';
 
 class CourseScreen extends StatefulWidget {
-  String img;
+  final String img; // Make the 'img' variable final
+
   CourseScreen(this.img);
+
   @override
   State<CourseScreen> createState() => _CourseScreenState();
 }
 
 class _CourseScreenState extends State<CourseScreen> {
-  bool IsVideosSection = true;
+  bool isVideosSection = true; // Correct variable name to camelCase
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,7 +81,7 @@ class _CourseScreenState extends State<CourseScreen> {
             ),
             SizedBox(height: 5),
             Text(
-              "Create by Programmer",
+              "Created by Programmer",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -105,10 +108,16 @@ class _CourseScreenState extends State<CourseScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Material(
-                    color: Color(0xFF674AEF),
+                    color: isVideosSection
+                        ? Color(0xFF674AEF)
+                        : Color(0xFF674AEF).withOpacity(0.6),
                     borderRadius: BorderRadius.circular(10),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          isVideosSection = true;
+                        });
+                      },
                       child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 15, horizontal: 35),
@@ -124,14 +133,14 @@ class _CourseScreenState extends State<CourseScreen> {
                     ),
                   ),
                   Material(
-                    color: IsVideosSection
+                    color: isVideosSection
                         ? Color(0xFF674AEF).withOpacity(0.6)
                         : Color(0xFF674AEF),
                     borderRadius: BorderRadius.circular(10),
                     child: InkWell(
                       onTap: () {
                         setState(() {
-                          IsVideosSection = false;
+                          isVideosSection = false;
                         });
                       },
                       child: Container(
@@ -152,7 +161,7 @@ class _CourseScreenState extends State<CourseScreen> {
               ),
             ),
             SizedBox(height: 5),
-            IsVideosSection ? VideoSection() : DescriptionSection(),
+            isVideosSection ? VideoSection() : DescriptionSection(),
           ],
         ),
       ),
