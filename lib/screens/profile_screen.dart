@@ -127,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         SnackBar(content: Text('Processing Data')));
                   }
                 },
-                child: Text('Submit'),
+                child: Text('Simpan'),
               ),
             ],
           ),

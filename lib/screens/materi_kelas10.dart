@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sistem_pembelajaran/screens/materi_bab1_KelasX.dart';
-// import 'package:sistem_pembelajaran/screens/materi_bab1_kelasIIX.dart';
+import 'package:sistem_pembelajaran/screens/materi_bab2_kelasX.dart';
+// import 'package:sistem_pembelajaran/screens/materi_bab3_kelasX.dart';
+// import 'package:sistem_pembelajaran/screens/materi_bab2_kelasX.dart';
+// import 'package:sistem_pembelajaran/screens/materi_bab2_kelasX.dart';
 
 void main() {
   runApp(MyApp());
@@ -44,10 +47,20 @@ class Materikelas10 extends StatelessWidget {
               backgroundColor: Colors.grey,
             ),
           ),
-          ClassroomCard(
-            title: 'Bab II',
-            subtitle: 'Berpikir Komputasional',
-            backgroundColor: Colors.grey,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => bab2kelas10Screen('BAB 2'),
+                ),
+              );
+            },
+            child: ClassroomCard(
+              title: 'Bab II',
+              subtitle: 'Berpikir Komputasional',
+              backgroundColor: Colors.grey,
+            ),
           ),
           ClassroomCard(
             title: 'Bab III',
