@@ -1,357 +1,359 @@
+import 'package:education_app_ui/Screens/kelas_10.dart';
+import 'package:education_app_ui/Utils/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/absensi_screen.dart';
-import 'package:sistem_pembelajaran/screens/class_screen.dart';
-import 'package:sistem_pembelajaran/screens/course_screen.dart';
-import 'package:sistem_pembelajaran/screens/kelas_screen.dart';
-import 'package:sistem_pembelajaran/screens/nilai_screen.dart';
-import 'package:sistem_pembelajaran/screens/profile_screen.dart';
-import 'package:sistem_pembelajaran/screens/remedial_screen.dart';
-import 'package:sistem_pembelajaran/screens/siswa_screen.dart';
+// Import the new screen
 
-class HomePage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    if (index == 2) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ProfileScreen()),
-      );
-    }
-  }
-
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePageContent(),
-    WishlistScreen(),
-    // Placeholder for ProfileScreen, which will be navigated to directly
-  ];
+class _HomeScreenState extends State<HomeScreen> {
+  final TextEditingController _searchController = TextEditingController();
+  bool _isSearchVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _selectedIndex < 2
-          ? _widgetOptions[_selectedIndex]
-          : Container(), // Return empty container for Profile to prevent errors
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: true,
-        iconSize: 32,
-        selectedItemColor: Color(0xFF674AEF),
-        selectedFontSize: 18,
-        unselectedItemColor: Colors.grey,
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: 'Halaman Utama'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Wishlist'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 45),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Header(
+                isSearchVisible: _isSearchVisible,
+                searchController: _searchController,
+                toggleSearch: () {
+                  setState(() {
+                    _isSearchVisible = !_isSearchVisible;
+                  });
+                },
+              ),
+              const SizedBox(height: 10),
+              const CategoryTabs(),
+              const SizedBox(height: 10),
+              const CategoryHeader(),
+              const SizedBox(height: 10),
+              CategoryImages(), // Remove const to enable context use
+              const SizedBox(height: 10),
+              const BottomNavBar(),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Header extends StatelessWidget {
+  final bool isSearchVisible;
+  final TextEditingController searchController;
+  final VoidCallback toggleSearch;
+
+  const Header({
+    Key? key,
+    required this.isSearchVisible,
+    required this.searchController,
+    required this.toggleSearch,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(
+                "Images/menu1.png",
+                height: 40,
+                width: 40,
+              ),
+              GestureDetector(
+                onTap: toggleSearch,
+                child: Image.asset(
+                  "Images/search1.png",
+                  height: 40,
+                  width: 40,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 300),
+            height: isSearchVisible ? 60 : 0,
+            child: isSearchVisible
+                ? TextField(
+                    controller: searchController,
+                    decoration: InputDecoration(
+                      hintText: "Search...",
+                      prefixIcon: const Icon(Icons.search),
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: toggleSearch,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  )
+                : null,
+          ),
+          const SizedBox(height: 15),
+          Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      const Text(
+                        "Hi Julia",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
+                      const SizedBox(width: 10),
+                      Image.asset(
+                        "Images/hand.png",
+                        height: 30,
+                        width: 30,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 5),
+                  const Text(
+                    "Hallo Programmer",
+                    style: TextStyle(color: Colors.black54, fontSize: 17),
+                  ),
+                ],
+              ),
+              const Spacer(),
+              Image.asset(
+                "Images/profile.png",
+                height: 110,
+                width: 110,
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
 
-class HomePageContent extends StatelessWidget {
-  // Existing HomePage content here
-  List<String> catNames = [
-    "Nilai",
-    "Materi",
-    "Absensi",
-    "Kelas",
-    "Remedial",
-    "Siswa",
-  ];
-  List<Color> catColors = [
-    Color(0xFFFFCF2F),
-    Color(0xFF6fe080),
-    Color(0xFF618DFD),
-    Color(0xFFFC7C7F),
-    Color(0xFFC884F8),
-    Color(0xFF78E667),
-  ];
-  List<Icon> catIcons = [
-    Icon(Icons.category, color: Colors.white, size: 30),
-    Icon(Icons.video_library, color: Colors.white, size: 30),
-    Icon(Icons.assignment, color: Colors.white, size: 30),
-    Icon(Icons.room, color: Colors.white, size: 30),
-    Icon(Icons.book_sharp, color: Colors.white, size: 30),
-    Icon(Icons.emoji_events, color: Colors.white, size: 30),
-  ];
-  List<String> imgList = ['BAB I', 'BAB II', 'BAB IV', 'BAB V', 'BAB VI'];
+class CategoryTabs extends StatelessWidget {
+  const CategoryTabs({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Container(
-          padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: 10),
-          decoration: BoxDecoration(
-              color: Color(0xFF674AEF),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              )),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    Icons.dashboard,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  Icon(
-                    Icons.notifications,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.only(left: 3, bottom: 15),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Card(
+            color: primaryColor,
+            child: const SizedBox(
+              height: 50,
+              width: 90,
+              child: Center(
                 child: Text(
-                  "Hi Programmer",
+                  "Top",
                   style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 1,
-                    wordSpacing: 2,
-                    color: Colors.white,
-                  ),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.white),
                 ),
               ),
-              Container(
-                margin: EdgeInsets.only(top: 5, bottom: 20),
-                width: MediaQuery.of(context).size.width,
-                height: 55,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Cari",
-                      hintStyle:
-                          TextStyle(color: Colors.black.withOpacity(0.5)),
-                      prefixIcon: Icon(
-                        Icons.search,
-                        size: 25,
-                      )),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 20, left: 15, right: 15),
-          child: Column(
-            children: [
-              GridView.builder(
-                itemCount: catNames.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  childAspectRatio: 1.1,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Widget nextScreen;
-                      switch (catNames[index]) {
-                        case 'Materi':
-                          nextScreen = MaterialScreen();
-                          break;
-                        case 'Absensi':
-                          nextScreen = AbsensiScreen();
-                          break;
-                        case 'Remedial':
-                          nextScreen = RemedialScreen();
-                          break;
-                        case 'Nilai':
-                          nextScreen =
-                              NilaiScreen(); // Assuming this should be NilaiScreen
-                          break;
-                        case 'Siswa':
-                          nextScreen = SiswaScreen();
-                          break;
-                        case 'Kelas':
-                          nextScreen = CheckKelas();
-                          break;
-                        default:
-                          return;
-                      }
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  nextScreen,
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0);
-                            const end = Offset.zero;
-                            const curve = Curves.ease;
-
-                            var tween = Tween(begin: begin, end: end)
-                                .chain(CurveTween(curve: curve));
-
-                            return SlideTransition(
-                              position: animation.drive(tween),
-                              child: child,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 60,
-                          width: 60,
-                          decoration: BoxDecoration(
-                            color: catColors[index],
-                            shape: BoxShape.circle,
-                          ),
-                          child: Center(
-                            child: catIcons[index],
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          catNames[index],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black.withOpacity(0.7),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Materi",
-                    style: TextStyle(
-                      fontSize: 23,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  Text(
-                    "Lihat Semua ",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      color: Color(0xFF674AEF),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 10),
-              GridView.builder(
-                itemCount: imgList.length,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio:
-                      (MediaQuery.of(context).size.height - 50 - 25) /
-                          (4 * 200),
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) =>
-                                  CourseScreen(imgList[index]),
-                          transitionsBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            const begin = Offset(1.0, 0.0);
-                            const end = Offset.zero;
-                            const curve = Curves.ease;
-
-                            var tween = Tween(begin: begin, end: end)
-                                .chain(CurveTween(curve: curve));
-
-                            return SlideTransition(
-                              position: animation.drive(tween),
-                              child: child,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0xFFF5F3FF),
-                      ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(10),
-                            child: Image.asset(
-                              "assets/images${imgList[index]}.png",
-                              width: 100,
-                              height: 100,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            "55 Videos",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.black.withOpacity(0.5),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
+          const Text(
+            " Design",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
           ),
-        ),
-      ],
+          const Text(
+            "Marketing",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Image.asset(
+            "Images/filter.png",
+            height: 40,
+          ),
+        ],
+      ),
     );
   }
 }
 
-class WishlistScreen extends StatelessWidget {
+class CategoryHeader extends StatelessWidget {
+  const CategoryHeader({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Wishlist',
-        style: TextStyle(fontSize: 30),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            " Materi TIK ",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+          Text(
+            "See all",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CategoryImages extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 600,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Colors.white, Color.fromARGB(255, 233, 236, 246)])),
+      child: Stack(
+        children: [
+          Positioned(
+            left: 0,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => kelas10()),
+                );
+              },
+              child: displayImage(250, "Images/materikelas10.png"),
+            ),
+          ),
+          Positioned(
+            right: 0,
+            child: displayImage(220, "Images/materikelas11.png"),
+          ),
+          Positioned(
+            left: 0,
+            top: 260,
+            child: displayImage(220, "Images/materikelas12.png"),
+          ),
+          Positioned(
+            right: 0,
+            top: 230,
+            child: displayImage(250, "Images/quiz.png"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Padding displayImage(double height, String image) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15),
+      child: SizedBox(
+        height: height,
+        width: 193,
+        child: Image.asset(
+          image,
+          fit: BoxFit.fill,
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavBar extends StatelessWidget {
+  const BottomNavBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: 103,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(40),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Card(
+                    color: primaryColor,
+                    child: const SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Icon(
+                        Icons.home,
+                        size: 35,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const Icon(
+                    Icons.watch_later,
+                    color: Colors.black45,
+                    size: 35,
+                  ),
+                  const Icon(
+                    Icons.favorite,
+                    color: Colors.black45,
+                    size: 35,
+                  ),
+                  const Icon(
+                    Icons.person_2,
+                    color: Colors.black45,
+                    size: 35,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 40, top: 5),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(200),
+                ),
+                height: 12,
+                width: 12,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

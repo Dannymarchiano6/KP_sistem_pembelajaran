@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/screens/home_screen.dart';
+import 'package:education_app_ui/screens/home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -28,7 +28,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Image.asset(
-                        "images/books.png",
+                        "assets/images/books.png",
                         scale: 0.8,
                       ),
                     ),
@@ -89,7 +89,7 @@ class WelcomeScreen extends StatelessWidget {
                             PageRouteBuilder(
                               pageBuilder:
                                   (context, animation, secondaryAnimation) =>
-                                      HomePage(),
+                                      HomeScreen(),
                               transitionsBuilder: (context, animation,
                                   secondaryAnimation, child) {
                                 const begin = Offset(1.0, 0.0);
