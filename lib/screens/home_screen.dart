@@ -1,7 +1,7 @@
 import 'package:education_app_ui/Screens/kelas_10.dart';
+import 'package:education_app_ui/Screens/enter_account_screen.dart';
 import 'package:education_app_ui/Utils/colors.dart';
 import 'package:flutter/material.dart';
-// Import the new screen
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 10),
               CategoryImages(), // Remove const to enable context use
               const SizedBox(height: 10),
-              const BottomNavBar(),
+              BottomNavBar(), // Remove const to enable context use
             ],
           ),
         ),
@@ -238,48 +238,109 @@ class CategoryImages extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [Colors.white, Color.fromARGB(255, 233, 236, 246)])),
-      child: Stack(
+      child: Column(
         children: [
-          Positioned(
-            left: 0,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => kelas10()),
-                );
-              },
-              child: displayImage(250, "Images/materikelas10.png"),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CategoryCard(
+                title: "KELAS 10",
+                color: Colors.yellow,
+                image: "Images/materikelas10.png",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => kelas10()),
+                  );
+                },
+              ),
+              CategoryCard(
+                title: "KELAS 11",
+                color: Colors.red,
+                image: "Images/materikelas11.png",
+                onTap: () {
+                  // Navigate to KELAS 11 screen
+                },
+              ),
+            ],
           ),
-          Positioned(
-            right: 0,
-            child: displayImage(220, "Images/materikelas11.png"),
-          ),
-          Positioned(
-            left: 0,
-            top: 260,
-            child: displayImage(220, "Images/materikelas12.png"),
-          ),
-          Positioned(
-            right: 0,
-            top: 230,
-            child: displayImage(250, "Images/quiz.png"),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CategoryCard(
+                title: "KELAS 12",
+                color: Colors.teal,
+                image: "Images/materikelas12.png",
+                onTap: () {
+                  // Navigate to KELAS 12 screen
+                },
+              ),
+              CategoryCard(
+                title: "QUIZ",
+                color: Colors.lightBlue,
+                image: "Images/quiz.png",
+                onTap: () {
+                  // Navigate to Quiz screen
+                },
+              ),
+            ],
           ),
         ],
       ),
     );
   }
+}
 
-  Padding displayImage(double height, String image) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 15, right: 15),
-      child: SizedBox(
-        height: height,
-        width: 193,
-        child: Image.asset(
-          image,
-          fit: BoxFit.fill,
+class CategoryCard extends StatelessWidget {
+  final String title;
+  final Color color;
+  final String image;
+  final VoidCallback onTap;
+
+  const CategoryCard({
+    Key? key,
+    required this.title,
+    required this.color,
+    required this.image,
+    required this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 200,
+        width: 150,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 5,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.white),
+            ),
+            const SizedBox(height: 10),
+            Image.asset(
+              image,
+              height: 100,
+              fit: BoxFit.cover,
+            ),
+          ],
         ),
       ),
     );
@@ -287,8 +348,6 @@ class CategoryImages extends StatelessWidget {
 }
 
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -333,10 +392,37 @@ class BottomNavBar extends StatelessWidget {
                     color: Colors.black45,
                     size: 35,
                   ),
-                  const Icon(
-                    Icons.person_2,
-                    color: Colors.black45,
-                    size: 35,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  AccountScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            const begin = Offset(1.0, 0.0);
+                            const end = Offset.zero;
+                            const curve = Curves.ease;
+
+                            var tween = Tween(begin: begin, end: end)
+                                .chain(CurveTween(curve: curve));
+                            var offsetAnimation = animation.drive(tween);
+
+                            return SlideTransition(
+                              position: offsetAnimation,
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.person_2,
+                      color: Colors.black45,
+                      size: 35,
+                    ),
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:education_app_ui/Screens/materi_kelas10bab1.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +42,7 @@ class kelas10 extends StatelessWidget {
               title: 'Bab 1',
               subtitle: 'Informatika dan ketrampilan Genetika',
               backgroundColor: Colors.grey,
+              progress: 0.2,
             ),
           ),
           InkWell(
@@ -56,52 +58,53 @@ class kelas10 extends StatelessWidget {
               title: 'Bab II',
               subtitle: 'Berpikir Komputasional',
               backgroundColor: Colors.grey,
+              progress: 0.4,
             ),
           ),
           ClassroomCard(
             title: 'Bab III',
             subtitle: 'Teknologi Informasi dan Komunikasi',
             backgroundColor: Colors.grey,
+            progress: 0.6,
           ),
           ClassroomCard(
             title: 'Bab IV',
             subtitle: 'Sistem Komputer',
             backgroundColor: Colors.grey,
+            progress: 0.8,
           ),
           ClassroomCard(
             title: 'Bab V',
             subtitle: 'Dasar Jaringan Komputer',
             backgroundColor: Colors.grey,
+            progress: 0.1,
           ),
           ClassroomCard(
             title: 'Bab VI',
             subtitle: 'Analisis Data',
             backgroundColor: Colors.grey,
+            progress: 0.3,
           ),
           ClassroomCard(
             title: 'Bab VII',
-            subtitle: 'Algoritman dan Pemrograman',
+            subtitle: 'Algoritma dan Pemrograman',
             backgroundColor: Colors.grey,
+            progress: 0.5,
           ),
           ClassroomCard(
             title: 'Bab VIII',
             subtitle: 'Dampak Sosial dan Informatika',
             backgroundColor: Colors.grey,
+            progress: 0.7,
           ),
           ClassroomCard(
             title: 'Bab IX',
             subtitle: 'Praktika Lintas bidang Informatika',
             backgroundColor: Colors.grey,
+            progress: 0.9,
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     // Add your onPressed code here!
-      //   },
-      //   child: Icon(Icons.add),
-      //   backgroundColor: Colors.blue,
-      // ),
     );
   }
 }
@@ -110,11 +113,13 @@ class ClassroomCard extends StatelessWidget {
   final String title;
   final String subtitle;
   final Color backgroundColor;
+  final double progress;
 
   ClassroomCard({
     required this.title,
     required this.subtitle,
     required this.backgroundColor,
+    required this.progress,
   });
 
   @override
@@ -123,17 +128,30 @@ class ClassroomCard extends StatelessWidget {
       color: backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
           children: [
-            Text(
-              title,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+            CircularPercentIndicator(
+              radius: 40.0,
+              lineWidth: 8.0,
+              percent: progress,
+              center: new Text("${(progress * 100).toInt()}%"),
+              progressColor: Colors.blue,
+              backgroundColor: Colors.white,
             ),
-            SizedBox(height: 8),
-            Text(
-              subtitle,
-              style: TextStyle(color: Colors.white),
+            SizedBox(width: 16),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(fontSize: 20, color: Colors.white),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  subtitle,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ],
             ),
           ],
         ),
