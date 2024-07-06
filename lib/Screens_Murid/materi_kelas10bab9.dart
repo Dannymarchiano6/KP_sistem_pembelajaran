@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:education_app_ui/Widget/description_section.dart';
 import 'package:education_app_ui/Widget/video_section.dart';
 
-class CourseScreenbab1 extends StatefulWidget {
+class CourseScreenbab9kelas10 extends StatefulWidget {
   String img;
-  CourseScreenbab1(this.img);
+  CourseScreenbab9kelas10(this.img);
   @override
-  State<CourseScreenbab1> createState() => _CourseScreenState();
+  State<CourseScreenbab9kelas10> createState() => _CourseScreenState();
 }
 
-class _CourseScreenState extends State<CourseScreenbab1> {
+class _CourseScreenState extends State<CourseScreenbab9kelas10> {
   bool IsVideosSection = true;
   @override
   Widget build(BuildContext context) {
