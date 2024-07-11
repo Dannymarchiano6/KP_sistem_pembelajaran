@@ -50,7 +50,7 @@ class kelas10 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseScreenbab1('BAB 2'),
+                  builder: (context) => CourseScreenkelas12bab1('BAB 2'),
                 ),
               );
             },
@@ -72,36 +72,6 @@ class kelas10 extends StatelessWidget {
             subtitle: 'Sistem Komputer',
             backgroundColor: Colors.grey,
             progress: 0.8,
-          ),
-          ClassroomCard(
-            title: 'Bab V',
-            subtitle: 'Dasar Jaringan Komputer',
-            backgroundColor: Colors.grey,
-            progress: 0.1,
-          ),
-          ClassroomCard(
-            title: 'Bab VI',
-            subtitle: 'Analisis Data',
-            backgroundColor: Colors.grey,
-            progress: 0.3,
-          ),
-          ClassroomCard(
-            title: 'Bab VII',
-            subtitle: 'Algoritma dan Pemrograman',
-            backgroundColor: Colors.grey,
-            progress: 0.5,
-          ),
-          ClassroomCard(
-            title: 'Bab VIII',
-            subtitle: 'Dampak Sosial dan Informatika',
-            backgroundColor: Colors.grey,
-            progress: 0.7,
-          ),
-          ClassroomCard(
-            title: 'Bab IX',
-            subtitle: 'Praktika Lintas bidang Informatika',
-            backgroundColor: Colors.grey,
-            progress: 0.9,
           ),
         ],
       ),

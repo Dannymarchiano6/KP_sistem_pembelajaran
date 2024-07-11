@@ -1,5 +1,7 @@
-import 'package:education_app_ui/Screens/kelas_10.dart';
-import 'package:education_app_ui/Screens/enter_account_screen.dart';
+// import 'package:education_app_ui/Screens/kelas_10.dart';
+// import 'package:education_app_ui/Screens/enter_account_screen.dart';
+import 'package:education_app_ui/Screens_Murid/enter_account_screen.dart';
+import 'package:education_app_ui/Screens_Murid/kelas_10.dart';
 import 'package:education_app_ui/Utils/colors.dart';
 import 'package:flutter/material.dart';
 

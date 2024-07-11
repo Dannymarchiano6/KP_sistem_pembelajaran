@@ -1,12 +1,17 @@
-import 'package:education_app_ui/Screens/materi_kelas10bab1.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab2.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab3.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab4.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab5.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab6.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab7.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab8.dart';
-import 'package:education_app_ui/Screens/materi_kelas10bab9.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab1.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab2.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab3.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab4.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab5.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab6.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab7.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab8.dart';
+// import 'package:education_app_ui/Screens/materi_kelas10bab9.dart';
+import 'package:education_app_ui/Screens_Murid/materi_kelas11bab1.dart';
+import 'package:education_app_ui/Screens_Murid/materi_kelas11bab2.dart';
+import 'package:education_app_ui/Screens_Murid/materi_kelas11bab3.dart';
+import 'package:education_app_ui/Screens_Murid/materi_kelas11bab4.dart';
+import 'package:education_app_ui/Screens_Murid/materi_kelas11bab5.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -42,7 +47,7 @@ class kelas10 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseScreenbab1('BAB 1'),
+                  builder: (context) => CourseScreenbab1kelas11('BAB 1'),
                 ),
               );
             },
@@ -58,7 +63,7 @@ class kelas10 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseScreenbab1('BAB 2'),
+                  builder: (context) => CourseScreenbab2kelas11('BAB 2'),
                 ),
               );
             },
@@ -74,7 +79,7 @@ class kelas10 extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CourseScreenbab2('BAB2'),
+                  builder: (context) => CourseScreenbab3kelas11('BAB 3'),
                 ),
               );
             },
@@ -85,41 +90,37 @@ class kelas10 extends StatelessWidget {
             backgroundColor: Colors.grey,
             progress: 0.6,
           ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CourseScreenbab4kelas11('BAB 4'),
+                ),
+              );
+            },
+          ),
           ClassroomCard(
             title: 'Bab IV',
             subtitle: 'Sistem Komputer',
             backgroundColor: Colors.grey,
             progress: 0.8,
           ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CourseScreenbab5kelas11('BAB 5'),
+                ),
+              );
+            },
+          ),
           ClassroomCard(
             title: 'Bab V',
             subtitle: 'Dasar Jaringan Komputer',
             backgroundColor: Colors.grey,
             progress: 0.1,
-          ),
-          ClassroomCard(
-            title: 'Bab VI',
-            subtitle: 'Analisis Data',
-            backgroundColor: Colors.grey,
-            progress: 0.3,
-          ),
-          ClassroomCard(
-            title: 'Bab VII',
-            subtitle: 'Algoritma dan Pemrograman',
-            backgroundColor: Colors.grey,
-            progress: 0.5,
-          ),
-          ClassroomCard(
-            title: 'Bab VIII',
-            subtitle: 'Dampak Sosial dan Informatika',
-            backgroundColor: Colors.grey,
-            progress: 0.7,
-          ),
-          ClassroomCard(
-            title: 'Bab IX',
-            subtitle: 'Praktika Lintas bidang Informatika',
-            backgroundColor: Colors.grey,
-            progress: 0.9,
           ),
         ],
       ),
