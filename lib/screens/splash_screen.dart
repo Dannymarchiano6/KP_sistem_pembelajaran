@@ -1,93 +1,152 @@
+import 'package:sistem_pembelajaran/utilis/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:sistem_pembelajaran/theme.dart';
-import 'package:sistem_pembelajaran/screens/welcome_screen.dart';
+import 'package:sistem_pembelajaran/screens/home_screen.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xff99B7FF),
-                Color(0xff6077F7),
+      body: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Stack(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height / 1.53,
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.white,
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height / 1.53,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                      // For image
+                      image: DecorationImage(
+                          image: AssetImage("Images/image.png"),
+                          fit: BoxFit.cover),
+                      borderRadius:
+                          BorderRadius.only(bottomRight: Radius.circular(70))),
+                ),
               ],
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/splash.png',
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: Text(
-                  'Learn anything\nAnytime anywhere',
-                  textAlign: TextAlign.center,
-                  style: whiteTextStyle.copyWith(
-                    fontSize: 36,
-                  ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 2.88,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("Images/image.png"), fit: BoxFit.cover),
                 ),
               ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                'Online learning is education that takes\nplace over the internet.',
-                textAlign: TextAlign.center,
-                style: ColorTextStyle.copyWith(fontSize: 18),
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                width: 210,
-                height: 50,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Color(0xffFE876C),
-                      Color(0xffFD5D37),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                height: MediaQuery.of(context).size.height / 2.88,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(70))),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Column(
+                    children: [
+                      const Text(
+                        "Learning Everywhere",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      const Text(
+                        "Learn with pleasure with\n    us weher ,you are!!",
+                        style: TextStyle(color: Colors.black54, fontSize: 18),
+                      ),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 15, right: 15, top: 60),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 16,
+                              width: 16,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(200),
+                                border: Border.all(
+                                  width: 1.5,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Container(
+                              height: 16,
+                              width: 16,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(200),
+                                border: Border.all(
+                                  width: 1.5,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Container(
+                              height: 16,
+                              width: 45,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(200),
+                                  color: primaryColor),
+                            ),
+                            const Spacer(),
+                            GestureDetector(
+                              // For navigation
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const HomeScreen()));
+                              },
+                              child: Container(
+                                height: 75,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: primaryColor),
+                                child: const Center(
+                                  child: Text(
+                                    "GetStarted",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 19,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => WelcomeScreen(),
-                      ),
-                      (route) => false,
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.transparent,
-                    shadowColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(17),
-                    ),
-                  ),
-                  child: Text(
-                    'Start Now',
-                    style: whiteTextStyle.copyWith(fontSize: 18),
-                  ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
