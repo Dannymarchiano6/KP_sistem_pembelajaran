@@ -1,6 +1,6 @@
 {
-    "name": "sistem_pembelajaran",
-    "short_name": "sistem_pembelajaran",
+    "name": "education_app_ui",
+    "short_name": "education_app_ui",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
