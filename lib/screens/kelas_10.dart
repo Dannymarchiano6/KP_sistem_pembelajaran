@@ -1,21 +1,21 @@
-// import 'package:education_app_ui/Screens/materi_kelas10bab1.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab2.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab3.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab4.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab5.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab6.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab7.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab8.dart';
-// import 'package:education_app_ui/Screens/materi_kelas10bab9.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab1.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab2.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab3.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab4.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab5.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab6.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab7.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab8.dart';
-import 'package:education_app_ui/Screens_Murid/materi_kelas10bab9.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab1.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab2.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab3.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab4.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab5.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab6.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab7.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab8.dart';
+import 'package:education_app_ui/Screens/materi_kelas10bab9.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab1.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab2.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab3.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab4.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab5.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab6.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab7.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab8.dart';
+// import 'package:education_app_ui/Screens_Murid/materi_kelas10bab9.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 
@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: kelas10(),
+      home: Kelas10(),
     );
   }
 }
 
-class kelas10 extends StatelessWidget {
+class Kelas10 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
