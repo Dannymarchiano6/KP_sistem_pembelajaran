@@ -1,5 +1,3 @@
-// import 'package:education_app_ui/Screens/kelas_10.dart';
-// import 'package:education_app_ui/Screens/enter_account_screen.dart';
 import 'package:education_app_ui/Screens/enter_account_screen.dart';
 import 'package:education_app_ui/Screens/kelas_10.dart';
 import 'package:education_app_ui/Screens/kelas_11.dart';
@@ -168,27 +166,13 @@ class CategoryTabs extends StatelessWidget {
               width: 90,
               child: Center(
                 child: Text(
-                  "Top",
+                  "Materi",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
                       color: Colors.white),
                 ),
               ),
-            ),
-          ),
-          const Text(
-            " Design",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          const Text(
-            "Marketing",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
             ),
           ),
           Image.asset(
