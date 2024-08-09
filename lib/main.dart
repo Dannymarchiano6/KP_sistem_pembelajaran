@@ -1,3 +1,4 @@
+import 'package:education_app_ui/Screens/splash_screen.dart';
 import 'package:education_app_ui/Screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         // For fonts
         textTheme: GoogleFonts.notoSansAdlamTextTheme(),
       ),
-      home: WelcomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

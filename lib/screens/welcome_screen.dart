@@ -1,4 +1,5 @@
-import 'package:education_app_ui/Screens/home_screen.dart';
+import 'package:education_app_ui/Screens/enter_account_screen.dart';
+// import 'package:education_app_ui/Screens/home_screen.dart';
 import 'package:education_app_ui/utilis/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -92,7 +93,7 @@ class WelcomeScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeScreen()),
+                                      builder: (context) => AccountScreen()),
                                 );
                               },
                               style: ElevatedButton.styleFrom(
@@ -102,7 +103,7 @@ class WelcomeScreen extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 100, vertical: 15),
                               ),
-                              child: Text('Mulai'),
+                              child: Text('Berikutnya'),
                             ),
                           ],
                         ),

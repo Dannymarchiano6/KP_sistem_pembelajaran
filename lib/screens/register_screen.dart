@@ -1,47 +1,39 @@
-import 'package:education_app_ui/Screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
-import 'package:education_app_ui/Utils/colors.dart'; // Import your custom colors
-import 'home_screen.dart'; // Import your HomeScreen
-// import 'register_screen.dart'; // Import your RegisterScreen
+import 'package:education_app_ui/Utils/colors.dart';
 
-class AccountScreen extends StatefulWidget {
+import 'home_screen.dart'; // Import your HomeScreen
+
+class RegisterScreen extends StatefulWidget {
   @override
-  _AccountScreenState createState() => _AccountScreenState();
+  _RegisterScreenState createState() => _RegisterScreenState();
 }
 
-class _AccountScreenState extends State<AccountScreen> {
-  final TextEditingController _nisController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  String errorMessage = '';
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _registerNisController = TextEditingController();
+  final TextEditingController _registerPasswordController =
+      TextEditingController();
+  String registrationMessage = '';
+  String registeredNis = '';
+  String registeredPassword = '';
 
-  void _login() {
-    String nis = _nisController.text;
-    String password = _passwordController.text;
+  void _register() {
+    String nis = _registerNisController.text;
+    String password = _registerPasswordController.text;
 
     if (nis.isEmpty || password.isEmpty) {
       setState(() {
-        errorMessage = "NIS dan Sandi tidak boleh kosong";
-      });
-    } else if (nis == "correctNIS" && password == "correctPassword") {
-      setState(() {
-        errorMessage = '';
-      });
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
-    } else if (nis != "correctNIS" && password == "correctPassword") {
-      setState(() {
-        errorMessage = "NIS salah, sandi benar";
-      });
-    } else if (nis == "correctNIS" && password != "correctPassword") {
-      setState(() {
-        errorMessage = "NIS benar, sandi salah";
+        registrationMessage = "NIS dan Sandi tidak boleh kosong";
       });
     } else {
       setState(() {
-        errorMessage = "NIS dan sandi belum terdaftar";
+        registeredNis = nis;
+        registeredPassword = password;
+        registrationMessage = '';
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomeScreen()),
+        );
       });
     }
   }
@@ -54,22 +46,6 @@ class _AccountScreenState extends State<AccountScreen> {
         child: Column(
           children: <Widget>[
             HeaderSection(),
-            LoginForm(
-                nisController: _nisController,
-                passwordController: _passwordController),
-            SizedBox(height: 30),
-            GestureDetector(
-              onTap: _login,
-              child: GradientButton(text: "Masuk"),
-            ),
-            if (errorMessage.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  errorMessage,
-                  style: TextStyle(color: Colors.red),
-                ),
-              ),
             SizedBox(height: 70),
             FadeInUp(
               duration: Duration(milliseconds: 2000),
@@ -81,15 +57,22 @@ class _AccountScreenState extends State<AccountScreen> {
               ),
             ),
             SizedBox(height: 30),
+            RegisterForm(
+              nisController: _registerNisController,
+              passwordController: _registerPasswordController,
+            ),
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegisterScreen()),
-                );
-              },
+              onTap: _register,
               child: GradientButton(text: "Daftar"),
             ),
+            if (registrationMessage.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  registrationMessage,
+                  style: TextStyle(color: Colors.red),
+                ),
+              ),
           ],
         ),
       ),
@@ -163,7 +146,7 @@ class HeaderSection extends StatelessWidget {
                 margin: EdgeInsets.only(top: 50),
                 child: Center(
                   child: Text(
-                    "Login",
+                    "Register",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,
@@ -193,11 +176,11 @@ class HeaderSection extends StatelessWidget {
   }
 }
 
-class LoginForm extends StatelessWidget {
+class RegisterForm extends StatelessWidget {
   final TextEditingController nisController;
   final TextEditingController passwordController;
 
-  LoginForm({required this.nisController, required this.passwordController});
+  RegisterForm({required this.nisController, required this.passwordController});
 
   @override
   Widget build(BuildContext context) {
@@ -246,10 +229,11 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
 
-  CustomTextField(
-      {required this.controller,
-      required this.hintText,
-      required this.isPassword});
+  CustomTextField({
+    required this.controller,
+    required this.hintText,
+    required this.isPassword,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -361,7 +345,7 @@ class BottomNavBar extends StatelessWidget {
                         PageRouteBuilder(
                           pageBuilder:
                               (context, animation, secondaryAnimation) =>
-                                  AccountScreen(),
+                                  RegisterScreen(),
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
                             const begin = Offset(1.0, 0.0);
@@ -381,7 +365,7 @@ class BottomNavBar extends StatelessWidget {
                       );
                     },
                     child: const Icon(
-                      Icons.person_2,
+                      Icons.person,
                       color: Colors.black45,
                       size: 35,
                     ),
@@ -390,14 +374,13 @@ class BottomNavBar extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 40, top: 5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: primaryColor,
-                  borderRadius: BorderRadius.circular(200),
-                ),
-                height: 12,
-                width: 12,
+              padding: const EdgeInsets.only(top: 8.0, left: 15),
+              child: Text(
+                "Home",
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                      color: Colors.black45,
+                      fontWeight: FontWeight.bold,
+                    ),
               ),
             ),
           ],
